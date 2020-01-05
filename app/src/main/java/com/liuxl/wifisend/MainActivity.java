@@ -123,16 +123,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void run() {//可以考虑在此处添加一个while循环，结合下面的catch语句，实现Socket对象获取失败后的超时重连，直到成功建立Socket连接
             try {
-                  byte[] data = {(byte)0x01,(byte)0x03,(byte)0x04,(byte)0x00,(byte)0x20,(byte)0x00,(byte)0x00, (byte) 0xFB, (byte) 0xF9,(byte)0x00,(byte)0x00,(byte)0x01};
-                   String dataStr = Utils.bytes2HexStr(data, 0, 9);
-
-
-                Message msg = new Message();
-                msg.obj = dataStr;
-                msg.what = 1;
-                if (handler != null) {
-                    handler.sendMessage(msg);
-                }
                 socket = new Socket(HOST, PORT);      //步骤一
                 socket.setSoTimeout(60000);
                 in = socket.getInputStream();
